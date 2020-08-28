@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +35,7 @@ class QuestionReaderTest {
     }
 
     @Test
-    void shouldReadSingleQuestion() throws IOException {
+    void shouldReadSingleQuestion() throws IOException, ParseException {
         String questionText = "100\tLAKES & RIVERS\tRiver mentioned most often in the Bible\tthe Jordan\n";
         QuestionReader reader = new QuestionReader(new StringReader(questionText));
         Question q = reader.readQuestion();
@@ -46,8 +47,29 @@ class QuestionReaderTest {
         assertNull(end);
     }
 
+
     @Test
-    void shouldReadManyQuestions() throws IOException {
+    void shouldThrowParseExceptionOnTooFewFields()throws IOException {
+        String questionText = "100\tLAKES & RIVERS\tthe Jordan\n";
+        QuestionReader reader = new QuestionReader(new StringReader(questionText));
+        ParseException e = assertThrows(ParseException.class, () -> {
+            reader.readQuestion();
+        });
+        assertEquals("Expected 4 firelds, but got 3", e.getMessage());
+    }
+
+    @Test
+    void shouldThrowParseExceptionOnBadInteger()throws IOException {
+        String questionText = "100\tLAKES & RIVERS\tthe Jordan\nquestion\n";
+        QuestionReader reader = new QuestionReader(new StringReader(questionText));
+        ParseException e = assertThrows(ParseException.class, () -> {
+            reader.readQuestion();
+        });
+        assertEquals("Expected an integer but got \"xxx\"", e.getMessage());
+    }
+
+    @Test
+    void shouldReadManyQuestions() throws IOException, ParseException {
         InputStream s = this.getClass()
                 .getClassLoader()
                 .getResourceAsStream("question-small.tsv");

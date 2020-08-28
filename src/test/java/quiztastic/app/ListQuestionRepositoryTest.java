@@ -15,7 +15,7 @@ class ListQuestionRepositoryTest {
     Path pathToSmallQuestionFile() {
         URL url = this.getClass()
                 .getClassLoader()
-                .getResource("questions-small.tsv");
+                .getResource("src/test/Resources/questions-small.tsv");
         if (url == null) fail();
         return Path.of(url.getFile());
     }
