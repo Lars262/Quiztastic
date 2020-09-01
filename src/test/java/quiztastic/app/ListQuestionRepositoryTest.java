@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,11 +21,11 @@ class ListQuestionRepositoryTest {
         return Path.of(url.getFile());
     }
 
-    public static ListQuestionRepository getQuestionsSmallRepo() {
-        InputStream s = ListQuestionRepository.class
+    public static MapQuestionRepository getQuestionsSmallRepo() {
+        InputStream s = MapQuestionRepository.class
                 .getClassLoader()
                 .getResourceAsStream("questions-small.tsv");
-        return ListQuestionRepository.fromQuestionReader(
+        return MapQuestionRepository.fromQuestionReader(
                 new QuestionReader(new InputStreamReader(s)));
     }
 

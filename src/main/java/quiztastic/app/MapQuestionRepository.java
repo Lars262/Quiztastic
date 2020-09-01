@@ -4,12 +4,17 @@ import quiztastic.core.Category;
 import quiztastic.core.Question;
 import quiztastic.domain.QuestionRepository;
 
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
 
-public class ListQuestionRepository implements QuestionRepository {
+public class MapQuestionRepository implements QuestionRepository {
+    private final HashMap<Category, List<Question>> questionsByCategory;
 
-    public static ListQuestionRepository fromQuestionReader(QuestionReader reader) {
+    public MapQuestionRepository(HashMap<Category, List<Question>> questionsByCategory) {
+        this.questionsByCategory = questionsByCategory;
+    }
+
+    public static MapQuestionRepository fromQuestionReader(QuestionReader reader) {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 

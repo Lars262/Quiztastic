@@ -29,6 +29,7 @@ public class BoardController {
     public Board makeBoard() {
         List<Board.Group> groups = new ArrayList<>();
         for (Category c : questionRepository.getCategories()) {
+            if (groups.size() == 6) break;
             try {
                 groups.add(makeGroup(c));
             } catch (IllegalArgumentException e) {
