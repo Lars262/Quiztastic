@@ -43,9 +43,9 @@ public class QuestionReader {
                         "Expected an integer in field 1, but got \"" + fields[0] + "\"",
                         lineCounter);
             }
-            Category category = new Category();
-            String question = "";
-            String answer = "";
+            Category category = new Category(fields[1]);
+            String question = fields[2];
+            String answer = fields[3];
             return new Question(score, category, question, answer);
         }
     }
