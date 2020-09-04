@@ -18,19 +18,34 @@ public class MapQuestionRepository implements QuestionRepository {
     }
 
     public static MapQuestionRepository fromQuestionReader(QuestionReader reader) throws IOException, ParseException {
-        reader.readQuestion();
+
+        HashMap<Category, List<Question>>questionsByCategory=new HashMap<>();
+
+        Question q;
+        while ((q=reader.readQuestion())!=null){
+
+            List<Question> current = questionsByCategory.get(q.getCategory());
+            // check (is lastName in families)
+            if (current == null) {
+                // save create new collection of names
+                current = new ArrayList<>();
+                // add it to families to fix situation
+                questionsByCategory.put(q.getCategory(), current);
+            }
+            current.add(q);
+        }
         //throw new UnsupportedOperationException("Not implemented yet!");
-        return new MapQuestionRepository(new HashMap<>());
+        return new MapQuestionRepository(questionsByCategory);
     }
 
     @Override
     public List<Category> getCategories() {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return List.copyOf(questionsByCategory.keySet());
     }
 
     @Override
     public List<Question> getQuestionsWithCategory(Category category) {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return List.copyOf(questionsByCategory.get(category));
     }
 
     @Override

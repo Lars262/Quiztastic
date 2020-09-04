@@ -37,7 +37,7 @@ public class Question {
     @Override
     public String toString() {
         return "Question{" +
-                "score=" + score +
+                "score=" + score + " category: " + category + " question: " + question + " answer: " + answer +
                 '}';
     }
 }

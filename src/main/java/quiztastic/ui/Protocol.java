@@ -1,10 +1,14 @@
 package quiztastic.ui;
 
 import quiztastic.app.Quiztastic;
+import quiztastic.core.Board;
+import quiztastic.core.Category;
+import quiztastic.entries.DisplayBoard;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
 import java.util.Scanner;
 
 public class Protocol {
@@ -31,8 +35,21 @@ public class Protocol {
             switch (line) {
                 case "h":
                 case "help":
-                   out.println("There are no help!");
+                   out.println("Help commands");
+                   out.println("Show board: b");
+                    System.out.println("Choose question: c");
                    break;
+                case "b":
+                    System.out.println(quiz.getBoard());
+                    break;
+                case "c":
+                    System.out.println("Not implementet yet");
+                    break;
+                case "A1":
+                    System.out.println("question 100");
+                    break;
+                case "A2":
+                    break;
                 default:
                    out.println("Unknown command! " + line);
             }
