@@ -37,16 +37,16 @@ public class Protocol {
                 case "help":
                    out.println("Help commands");
                    out.println("Show board: b");
-                    System.out.println("Choose question: c");
+                   out.println("Choose question: c");
                    break;
                 case "b":
-                    System.out.println(quiz.getBoard());
+                    out.println(quiz.getBoard());
                     break;
                 case "c":
-                    System.out.println("Not implementet yet");
+                    out.println("Not implementet yet");
                     break;
                 case "A1":
-                    System.out.println("question 100");
+                    out.println("question 100");
                     break;
                 case "A2":
                     break;
