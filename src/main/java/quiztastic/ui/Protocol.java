@@ -3,6 +3,7 @@ package quiztastic.ui;
 import quiztastic.app.Quiztastic;
 import quiztastic.core.Board;
 import quiztastic.core.Category;
+import quiztastic.core.Question;
 import quiztastic.domain.Game;
 import quiztastic.entries.DisplayBoard;
 
@@ -32,17 +33,20 @@ public class Protocol {
 
     private void displayBoard() {
         Game game = quiz.getCurrentGame();
-        List<Integer> scores = List.of(100,200, 300, 400, 500);
-        for (int questionNumber = 0; question < 5; questionNumber++) {
+        List<Integer> scores = List.of(100, 200, 300, 400, 500);
+        for (int questionNumber = 0; questionNumber < 5; questionNumber++) {
             out.print("");
-            if (game.isAnswered(category, questionNumber)) {
-                out.print("---");
-            } else {
-                out.println(scores.get(questionNumber));
+            for (int category = 0; category < 6; category++) {
+                out.print("    ");
+                if (game.isAnswered(category, questionNumber)) {
+                    out.print("---");
+                } else {
+                    out.println(scores.get(questionNumber));
+                }
+                out.print("     |");
             }
-            out.print("     |");
+            out.println();
         }
-        out.println();
     }
 
     public void run () {

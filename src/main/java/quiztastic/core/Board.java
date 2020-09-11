@@ -23,9 +23,7 @@ public class Board {
 
     @Override
     public String toString() {
-        return "Board{" +
-                "groups=" + groups +
-                '}';
+        return "" + groups;
     }
 
     public static class Group {
@@ -61,10 +59,7 @@ public class Board {
 
         @Override
         public String toString() {
-            return "Group{" +
-                    "category=" + category +
-                    ", questions=" + questions +
-                    '}';
+            return " | " + category + " | ";
         }
     }
 }
