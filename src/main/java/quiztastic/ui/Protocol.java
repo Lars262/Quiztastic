@@ -1,15 +1,10 @@
 package quiztastic.ui;
 
 import quiztastic.app.Quiztastic;
-import quiztastic.core.Board;
 import quiztastic.core.Category;
-import quiztastic.core.Question;
 import quiztastic.domain.Game;
-import quiztastic.entries.DisplayBoard;
 
-import java.io.BufferedReader;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,9 +26,11 @@ public class Protocol {
         return line;
     }
 
-    private void displayBoard() {
+    private int displayBoard() {
         Game game = quiz.getCurrentGame();
         List<Integer> scores = List.of(100, 200, 300, 400, 500);
+        out.println(quiz.getBoard());
+        out.println(List.copyOf(scores));
         for (int questionNumber = 0; questionNumber < 5; questionNumber++) {
             out.print("");
             for (int category = 0; category < 6; category++) {
@@ -41,12 +38,13 @@ public class Protocol {
                 if (game.isAnswered(category, questionNumber)) {
                     out.print("---");
                 } else {
-                    out.println(scores.get(questionNumber));
+                    System.out.println(scores.get(questionNumber));
                 }
-                out.print("     |");
+                out.print("         |");
             }
             out.println();
         }
+        return 0;
     }
 
     public void run () {
@@ -63,6 +61,7 @@ public class Protocol {
                     out.println(quiz.getBoard());
                     break;
                 case "c":
+                    out.println(displayBoard());
                     out.println("Not implementet yet");
                     break;
                 case "A1":

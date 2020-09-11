@@ -1,6 +1,7 @@
 package quiztastic.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /** A Jeopardy Board
@@ -11,6 +12,13 @@ public class Board {
 
     public Board(List<Group> groups) {
         this.groups = List.copyOf(groups);
+
+        /*Collections.shuffle(this.groups);
+        int randomSeriesLength = 6;
+        List<Group> randomSeries = this.groups.subList(0, randomSeriesLength);
+
+         */
+
         if (this.groups.size() != 6) {
             throw new IllegalArgumentException(
                     "Should be 6 groups, there were " + groups.size());
@@ -61,5 +69,6 @@ public class Board {
         public String toString() {
             return " | " + category + " | ";
         }
+
     }
 }
