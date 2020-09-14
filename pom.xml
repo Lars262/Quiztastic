@@ -52,7 +52,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs/</classpathPrefix>
                             <mainClass>
-                                quiztastic.entries.RunTUI
+                                quiztastic.entries.TUIServer
                             </mainClass>
                         </manifest>
                     </archive>
