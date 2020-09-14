@@ -6,6 +6,7 @@ import quiztastic.domain.Game;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Protocol {
@@ -47,28 +48,50 @@ public class Protocol {
         return 0;
     }
 
+    private int chooseCategory(String cat){
+        Map<String, Integer> options =
+                Map.of("A", 0, "B",1,"C",2,"D",3,"E",4,"F",5);
+        Integer i = options.get(cat);
+        if (i == null) {
+            out.println("Not a valid category: " + cat);
+            i = -1;
+        }
+        return i;
+    }
+
+    private int chooseCategory2(String cat){
+        switch (cat){
+            case "A": return 0;
+            case "B": return 1;
+            case "C": return 2;
+            case "D": return 3;
+            case "E": return 4;
+            case "F": return 5;
+            default:
+                return -1;
+        }
+    }
+
     public void run () {
         String line = fetchCommand();
         while (!line.equals("quit")) {
             switch (line) {
                 case "h":
                 case "help":
-                   out.println("Help commands");
+                   out.println("Help commands: ");
                    out.println("Show board: b");
                    out.println("Choose question: c");
                    break;
                 case "b":
-                    out.println(quiz.getBoard());
+                case "board":
+                    out.print(displayBoard());
+                    //out.println(quiz.getBoard());
                     break;
                 case "c":
-                    out.println(displayBoard());
+                case "choose":
                     out.println("Not implementet yet");
                     break;
-                case "A1":
-                    out.println("question 100");
-                    break;
-                case "A2":
-                    break;
+
                 default:
                    out.println("Unknown command! " + line);
             }
