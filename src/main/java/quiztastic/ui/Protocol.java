@@ -1,13 +1,15 @@
 package quiztastic.ui;
 
 import quiztastic.app.Quiztastic;
-import quiztastic.core.Category;
 import quiztastic.domain.Game;
 
+import java.io.BufferedReader;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
 
 public class Protocol {
     private final Quiztastic quiz;
@@ -73,14 +75,14 @@ public class Protocol {
     }
 
     public void run () {
-        String line = fetchCommand();
-        while (!line.equals("quit")) {
-            switch (line) {
+        String cmd = fetchCommand();
+        while (!cmd.equals("quit")) {
+            switch (cmd) {
                 case "h":
                 case "help":
                    out.println("Help commands: ");
                    out.println("Show board: b");
-                   out.println("Choose question: c");
+                   out.println("Choose question: c + category + score \n Example: A100");
                    break;
                 case "b":
                 case "board":
@@ -89,14 +91,21 @@ public class Protocol {
                     break;
                 case "c":
                 case "choose":
+                    String question = in.next();
+                    String a = question.substring(0, 1).toLowerCase(); // "A100" -> "a"
+                    int questionScore = Integer.parseInt(question.substring(1)); // "A100" -> 100
+                    //Hjæææælp
+                    //answerQuestion(("abcdef".indexOf(a)), questionScore);
+                    //break;
                     out.println("Not implementet yet");
                     break;
 
                 default:
-                   out.println("Unknown command! " + line);
+                    out.println("Unknown command! " + cmd);
             }
+            in.nextLine();
             out.flush();
-            line = fetchCommand();
+            cmd = fetchCommand();
         }
 
     }
